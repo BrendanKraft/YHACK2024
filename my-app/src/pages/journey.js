@@ -37,49 +37,40 @@ function Journey() {
       console.error('Error fetching data:', error);
       return;
     }
-    //console.log(data);
-    setData(data);
-  }  
-  
+    console.log(data[0]);
+    setData(data[0]);
+    id = 1;
+  }
+
 
   useEffect(() => {
     fetchData();
   }, []);
-  var stepDivs = [];
-  async function placeDivs(){
-    console.log("placing divs");
-    console.log(data);
-    var steps = data.steps;
-      console.log(steps);
-    var i = 0;
-    const mystyle = {
-      position: "absolute",
-      top: 100 - (i+1)*2 + "px",
-    };
-      var steps = data.steps;
-      console.log(steps);
-      for (i=1; i < 2; i++){
-        console.log(steps[i].step_title);
-        stepDivs.push(
-          <div class="step-card" style={mystyle}>
-            <div class="step-card-body">
-              <h5 class="step-card-title">{steps[i].step_title}</h5>
-              <h6 class="step-card-subtitle mb-2 text-body-secondary">idk</h6>
-              <p class="step-card-text">{steps[i].step_desc}</p>
-              <a href="#" class="stepcard-link">Card link</a>
-              <a href="#" class="stepcard-link">Another link</a>
-            </div>
+  let k = 0;
+  async function placeDivs() {
+    const stepDivs = data.map((step, index) => {
+      const mystyle = {
+        position: "absolute",
+        top: 98 - (index + 1) * 2 + "%",
+      };
+      return (
+        <div class="step-card" style={mystyle}>
+          <div class="step-card-body">
+            <h5 class="step-card-title">{step.step_title}</h5>
+            <h6 class="step-card-subtitle mb-2 text-body-secondary">Step 1</h6>
+            <p class="step-card-text">{step.step_desc}</p>
+            <a href="#" class="stepcard-link">Card link</a>
+            <a href="#" class="stepcard-link">Another link</a>
           </div>
-        );
-      }
-      stepDivs.forEach(element => {
-        document.getElementsByClassName("sliding-background")[0].appendChild(element);
-        console.log("appended");
-      });
+        </div>
+      );
+    });
   }
 
-  
+
+
   return (
+
 
     <div>
       <header>
@@ -89,41 +80,48 @@ function Journey() {
       <hr></hr>
       <body>
         <div class="container">
-          <div class="sliding-background" onLoad={placeDivs()}>
+          <div class="sliding-background" onLoad={fetchData}>
             <div class="space stars1"></div>
             <div class="space stars2"></div>
             <div class="space stars3"></div>
-            
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-4">
-            <div id="list-example" class="list-group">
-              <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
-              <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
-              <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
-              <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
-            </div>
-          </div>
-          <div class="col-8">
-            <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-              <h4 id="list-item-1">Item 1</h4>
-              <p>...</p>
-              <h4 id="list-item-2">Item 2</h4>
-              <p>...</p>
-              <h4 id="list-item-3">Item 3</h4>
-              <p>...</p>
-              <h4 id="list-item-4">Item 4</h4>
-              <p>...</p>
+            <div class="step-card">
+              <div class="step-card-body">
+                <h5 class="step-card-title">Getting Started</h5>
+                <h6 class="step-card-subtitle mb-2 text-body-secondary"></h6>
+                <p class="step-card-text">{}</p>
+                <a href="#" class="stepcard-link">Card link</a>
+                <a href="#" class="stepcard-link">Resources(links)</a>
+              </div>
             </div>
           </div>
         </div>
+          <div class="row">
+            <div class="col-4">
+              <div id="list-example" class="list-group">
+                <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
+              </div>
+            </div>
+            <div class="col-8">
+              <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+                <h4 id="list-item-1">Item 1</h4>
+                <p>...</p>
+                <h4 id="list-item-2">Item 2</h4>
+                <p>...</p>
+                <h4 id="list-item-3">Item 3</h4>
+                <p>...</p>
+                <h4 id="list-item-4">Item 4</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
 
 
-        <img src={rocket} alt="rocket" id="rocket"></img>
+          <img src={rocket} alt="rocket" id="rocket"></img>
 
-        
+
       </body>
 
     </div>

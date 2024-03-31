@@ -208,7 +208,7 @@ body {
     background-repeat: repeat;
     z-index: 1;
     height: calc(var(--imageHeight) * 3);
-    animation: slide 400s linear infinite;
+    animation: slide 250s linear infinite;
     margin: 0;
     padding: 0;
   }
@@ -221,10 +221,23 @@ body {
         transform: translateY(0);
     }
 }
+.step-card-body{
+    background-color: #f0f0f0;
+    width: 30%;
+    font-weight: 500;
+    color:black;
+}
 
-#step-card {
+.step-card {
+    border-radius: 30px;
+    margin:2%;
     z-index: 10;
-    background: white;
+    background-color: white;
+    width: 50;
+    height: 50;
+    position: absolute;
+    top: 98%;
+    color: red;
 }
 
 #rocketTest1 {
